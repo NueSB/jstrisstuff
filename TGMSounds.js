@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jstris TGM Sounds
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  adds tgm sounds for jstris
 // @author       NueSB
 // @match        https://*.jstris.jezevec10.com/*
