@@ -7,9 +7,11 @@
 // @match        https://*.jstris.jezevec10.com/*
 // @grant        none
 // ==/UserScript==
+
 (function() {
   'use strict';
   window.addEventListener('load', function() {
+      /*
     Game["prototype"]["moveCurrentBlock"] = function(_0xb09ex34, _0xb09ex35, _0xb09ex36) {
       if (!_0xb09ex35) {
         this["finesse"]++
@@ -24,9 +26,9 @@
         return true
       };
       return false
-    };
+    };*/
 
-    let pieceSounds = [];
+    let pieceSounds = {};
     let srcs = {
       0: "https://cdn.discordapp.com/attachments/235512056588140546/557815203677470730/SEB_mino7.wav",
       1: "https://cdn.discordapp.com/attachments/235512056588140546/557815184010379264/SEB_mino1.wav",
@@ -37,25 +39,25 @@
       6: "https://cdn.discordapp.com/attachments/235512056588140546/557815196920578058/SEB_mino4.wav",
       7: "https://cdn.discordapp.com/attachments/235512056588140546/558050338188558336/ITEM01.wav"
     };
-
     function playSound(s) {
       if (!s.paused && s.currentTime > 0) {
         s.currentTime = 0;
       } else s.play();
     }
 
-    function initSounds(s, b) {
-      for (let i = 0; i < b.length; i++) {
-        s.push(document.createElement("audio"));
-        s[i].src = b[i];
-        s[i].volume = 0.1;
+    function initSounds(dest, srclist) {
+      for (let i in srclist) {
+        dest[i] = document.createElement("audio");
+        dest[i].src = srclist[i];
+        dest[i].volume = 0.1;
       }
     }
 
     function TGMSound(id) {
-      if (pieceSounds[id] === undefined) {
-        playSound(pieceSounds[id % 7]);
-        return;
+      if (pieceSounds[id] === undefined)
+      {
+          playSound(pieceSounds[id % 7]);
+          return;
       }
       playSound(pieceSounds[id]);
     }
