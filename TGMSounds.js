@@ -27,16 +27,16 @@
     };
 
     let pieceSounds = [];
-    let srcs = [
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815203677470730/SEB_mino7.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815184010379264/SEB_mino1.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815201324335104/SEB_mino6.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815194756317184/SEB_mino3.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815192033951745/SEB_mino2.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815199294291971/SEB_mino5.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/557815196920578058/SEB_mino4.wav",
-      "https://cdn.discordapp.com/attachments/235512056588140546/558050338188558336/ITEM01.wav"
-    ];
+    let srcs = {
+      0: "https://cdn.discordapp.com/attachments/235512056588140546/557815203677470730/SEB_mino7.wav",
+      1: "https://cdn.discordapp.com/attachments/235512056588140546/557815184010379264/SEB_mino1.wav",
+      2: "https://cdn.discordapp.com/attachments/235512056588140546/557815201324335104/SEB_mino6.wav",
+      3: "https://cdn.discordapp.com/attachments/235512056588140546/557815194756317184/SEB_mino3.wav",
+      4: "https://cdn.discordapp.com/attachments/235512056588140546/557815192033951745/SEB_mino2.wav",
+      5: "https://cdn.discordapp.com/attachments/235512056588140546/557815199294291971/SEB_mino5.wav",
+      6: "https://cdn.discordapp.com/attachments/235512056588140546/557815196920578058/SEB_mino4.wav",
+      7: "https://cdn.discordapp.com/attachments/235512056588140546/558050338188558336/ITEM01.wav"
+    };
 
     function playSound(s) {
       if (!s.paused && s.currentTime > 0) {
@@ -53,7 +53,11 @@
     }
 
     function TGMSound(id) {
-      playSound(pieceSounds[id % 7]);
+      if (pieceSounds[id] === undefined) {
+        playSound(pieceSounds[id % 7]);
+        return;
+      }
+      playSound(pieceSounds[id]);
     }
     initSounds(pieceSounds, srcs);
 
